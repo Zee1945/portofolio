@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { profile, type Project } from '~/data/profile'
 
+const asset = useAsset()
+
 const matches = (p: Project, f: string) =>
   f === 'All' || p.tags.some((t) => t.toLowerCase().startsWith(f.toLowerCase()))
 
@@ -64,7 +66,7 @@ function onDialogClick(e: MouseEvent) {
             :style="{ '--tc': p.color }"
           >
             <div class="thumb">
-              <img v-if="p.image" :src="p.image" :alt="`Screenshot of ${p.title}`" loading="lazy">
+              <img v-if="p.image" :src="asset(p.image)" :alt="`Screenshot of ${p.title}`" loading="lazy">
               <span v-else class="thumb-title" aria-hidden="true">{{ p.title }}</span>
             </div>
 
@@ -100,7 +102,7 @@ function onDialogClick(e: MouseEvent) {
     >
       <div v-if="selected" class="modal-inner" :style="{ '--tc': selected.color }">
         <div class="modal-thumb">
-          <img v-if="selected.image" :src="selected.image" :alt="`Screenshot of ${selected.title}`">
+          <img v-if="selected.image" :src="asset(selected.image)" :alt="`Screenshot of ${selected.title}`">
           <span v-else class="thumb-title" aria-hidden="true">{{ selected.title }}</span>
           <button type="button" class="icon-btn close" aria-label="Close" @click="closeProject">
             <AppIcon name="x" :size="18" />

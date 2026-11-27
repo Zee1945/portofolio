@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { profile } from '~/data/profile'
+
+const asset = useAsset()
 </script>
 
 <template>
@@ -15,7 +17,7 @@ import { profile } from '~/data/profile'
         <div v-reveal="80" class="card mono">
           <img
             v-if="profile.avatar"
-            :src="profile.avatar"
+            :src="asset(profile.avatar)"
             :alt="`Photo of ${profile.name}`"
             class="avatar"
             loading="lazy"

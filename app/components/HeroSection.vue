@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { profile } from '~/data/profile'
 
+const asset = useAsset()
+
 type Tok = { t: string; c?: 'k' | 's' | 'n' | 'f' | 'c' }
 const str = (s: string): Tok => ({ t: `'${s}'`, c: 's' })
 
@@ -69,7 +71,7 @@ onBeforeUnmount(() => clearInterval(timer))
           <a href="#projects" class="btn btn-primary">
             View my work <AppIcon name="arrow-right" :size="18" />
           </a>
-          <a v-if="profile.resumeUrl" :href="profile.resumeUrl" class="btn" download>
+          <a v-if="profile.resumeUrl" :href="asset(profile.resumeUrl)" class="btn" download>
             <AppIcon name="download" :size="18" /> Download CV
           </a>
           <a v-else href="#contact" class="btn">Contact me</a>
